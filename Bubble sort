@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main() {
+    int n;
+
+    printf("Number of students: ");
+    scanf("%d", &n);
+
+    float heights[n];
+
+    printf("Heights: ");
+    for (int i = 0; i < n; i++) {
+        scanf("%f", &heights[i]);
+    }
+
+    for (int i = 0; i < n-1; i++) {
+        for (int j = 0; j < n-i-1; j++) {
+            if (heights[j] > heights[j+1]) {
+
+                float temp = heights[j];
+                heights[j] = heights[j+1];
+                heights[j+1] = temp;
+            }
+        }
+    }
+
+    printf("Sorted Heights: ");
+    for (int i = 0; i < n; i++) {
+        printf("%.1f", heights[i]);
+        if (i < n - 1) {
+            printf(", ");
+        }
+    }
+    printf("\n");
+
+    return 0;
+}
+
