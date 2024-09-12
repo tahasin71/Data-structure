@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+int main() {
+    int scores[] = {50, 60, 75, 80, 90};
+    int size = sizeof(scores) / sizeof(scores[0]);
+    int newScore = 70;
+    int i, index;
+    int max_size = 6;
+
+
+    int low = 0, high = size - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        if (scores[mid] == newScore) {
+            index = mid;
+            break;
+        }
+        if (scores[mid] < newScore) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    index = low;
+    if (size < max_size) {
+        for (i = size; i > index; i--) {
+            scores[i] = scores[i - 1];
+        }
+
+        scores[index] = newScore;
+
+        size++;
+    } else {
+        printf("Array is at maximum capacity.\n");
+    }
+
+    printf("Updated Scores: ");
+    for (i = 0; i < size; i++) {
+        printf("%d", scores[i]);
+        if (i < size - 1) {
+            printf(", ");
+        }
+    }
+    printf("\n");
+
+    return 0;
+}
